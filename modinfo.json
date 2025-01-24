@@ -2,7 +2,7 @@
 	"type": "code",
 	"modid": "transrod",
 	"name": "Translocator coaxing rod",
-	"authors": "MazorNoob",
+	"authors": ["MazorNoob"],
 	"description": "Item that makes translocators more likely to go where you want.",
 	"version": "0.0.1",
 	"dependencies": {
