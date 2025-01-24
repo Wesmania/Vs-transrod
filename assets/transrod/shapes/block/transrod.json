@@ -1,0 +1,141 @@
+{
+	"editor": {
+		"collapsedPaths": "",
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"copper": "game:item/resource/plate/copper",
+		"temporalgear": "game:item/resource/temporalgear",
+		"iron": "game:item/resource/plate/iron"
+	},
+	"elements": [
+		{
+			"name": "Base rod",
+			"from": [ 7.0, 0.0, 9.0 ],
+			"to": [ 9.0, 2.0, 15.0 ],
+			"rotationOrigin": [ 7.0, 0.0, 9.0 ],
+			"faces": {
+				"north": { "texture": "#iron", "uv": [ 0.0, 0.0, 0.0, 0.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] },
+				"east": { "texture": "#iron", "uv": [ 0.0, 0.0, 6.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#iron", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"west": { "texture": "#iron", "uv": [ 0.0, 0.0, 6.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"up": { "texture": "#iron", "uv": [ 0.0, 0.0, 2.0, 6.0 ], "windMode": [-1,-1,-1,-1] },
+				"down": { "texture": "#iron", "uv": [ 0.0, 0.0, 2.0, 6.0 ], "windMode": [-1,-1,-1,-1] }
+			}
+		},
+		{
+			"name": "Copper wrench block 1",
+			"from": [ 7.0, 0.0, 8.0 ],
+			"to": [ 9.0, 2.0, 9.0 ],
+			"rotationOrigin": [ 7.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 1.0 ], "windMode": [-1,-1,-1,-1] }
+			}
+		},
+		{
+			"name": "Copper wrench block 2",
+			"from": [ 6.0, 0.0, 8.0 ],
+			"to": [ 7.0, 2.0, 10.0 ],
+			"rotationOrigin": [ 6.0, 0.0, 8.0 ],
+			"rotationY": 45.0,
+			"faces": {
+				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] }
+			}
+		},
+		{
+			"name": "Copper wrench block 3",
+			"from": [ 9.0, 0.0, 8.4 ],
+			"to": [ 10.0, 2.0, 10.4 ],
+			"rotationOrigin": [ 9.0, 0.0, 9.0 ],
+			"rotationY": 135.0,
+			"faces": {
+				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 7.0, 2.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+			}
+		},
+		{
+			"name": "Copper wrench block 4",
+			"from": [ 9.0, 0.0, 6.0 ],
+			"to": [ 10.0, 2.0, 8.0 ],
+			"rotationOrigin": [ 10.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 7.0, 2.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+			}
+		},
+		{
+			"name": "Copper wrench block 5",
+			"from": [ 6.0, 0.0, 6.0 ],
+			"to": [ 7.0, 2.0, 8.0 ],
+			"rotationOrigin": [ 7.0, 0.0, 8.0 ],
+			"faces": {
+				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 7.0, 2.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+			}
+		},
+		{
+			"name": "Gear",
+			"from": [ 7.5, 0.5, 6.5 ],
+			"to": [ 8.5, 1.5, 7.5 ],
+			"rotationOrigin": [ 8.0, 1.0, 7.0 ],
+			"faces": {
+				"north": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+				"east": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
+				"west": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
+				"up": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
+				"down": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] }
+			}
+		}
+	],
+	"animations": [
+		{
+			"name": "Gear rotation",
+			"code": "gearrotation",
+			"quantityframes": 60,
+			"onActivityStopped": "Rewind",
+			"onAnimationEnd": "Repeat",
+			"keyframes": [
+				{
+					"frame": 0,
+					"elements": {
+						"Gear": { "rotationX": 0.0, "rotationY": 0.0, "rotationZ": 0.0 }
+					}
+				},
+				{
+					"frame": 59,
+					"elements": {
+						"Gear": { "rotationX": 0.0, "rotationY": -87.5, "rotationZ": 0.0 }
+					}
+				}
+			]
+		}
+	]
+}
