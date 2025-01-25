@@ -1,5 +1,6 @@
 using HarmonyLib;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -12,6 +13,20 @@ using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace TransRod {
+	public class BlockTransRod: Block {
+		public int TeleportAttempts = 0;
+		public bool CanDropItem = true;
+
+		public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1) {
+			List<ItemStack> stuff = new List<ItemStack>();
+			if (CanDropItem) {
+				stuff.Add(new ItemStack(world.GetBlock(new AssetLocation("transrod:transrod-north")), 1));
+			}
+			return stuff.ToArray();
+		}
+
+	}
+
 	public class Priv {
 		public static FieldInfo Field(BlockEntityStaticTranslocator instance, string name) {
 			return instance.GetType().GetField(name,
@@ -24,6 +39,7 @@ namespace TransRod {
 							    | System.Reflection.BindingFlags.Instance);
 		}
 	}
+
 	[HarmonyPatch(typeof(BlockEntityStaticTranslocator), nameof(BlockEntityStaticTranslocator.setupGameTickers))]
 	public class BlockEntityStaticTranslocatorHook {
 
@@ -112,6 +128,7 @@ namespace TransRod {
 		public override void Start(ICoreAPI api)
 		{
 			api.Logger.Notification("Hello mod");
+			api.RegisterBlockClass("transrod:BlockTransRod", typeof(BlockTransRod));
 			modhook.PatchAll();
 		}
 

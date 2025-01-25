@@ -1,5 +1,6 @@
 {
 	code: "transrod",
+	class: "transrod:BlockTransRod",
 	behaviors: [
 		{ name: "HorizontalOrientable" },
 	],
@@ -16,7 +17,6 @@
 	handbook: {
 		groupBy: ["transrod-north"]	
 	},
-	drawtype: "json",
 	sounds: {
 		place: "game:block/sand",
 	},
@@ -35,4 +35,7 @@
 		"*": null,
 	},
 	lightAbsorption: 0,
+	blockmaterial: "Other",
+	resistance: 0.25,
+	materialDensity: 3000,
 }
