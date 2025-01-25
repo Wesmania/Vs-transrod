@@ -61,10 +61,42 @@ namespace TransRod {
 			return stuff.ToArray();
 		}
 
-		public bool CanCoax() {
+		double CoaxChance() {
+			var material = LastCodePart(1);
+			double base_chance;
+			switch(material) {
+				case "copper":
+					base_chance = 0.5;
+					break;
+				case "silver":
+					base_chance = 0.8;
+					break;
+				case "meteoriciron":
+				case "cupronickel":
+					base_chance = 0.9;
+					break;
+				default:
+					base_chance = 0.5;
+					break;
+			}
+			// Let c be the coax chance and h be the chance to hit the cone.
+			// h = c + (1/4 * (1 - c))
+			// h = 1/4 + 3/4 * c
+			// c * 3/4 = h - 1/4
+			// c = (h - 1/4) * 4/3
+			return (base_chance - 0.25) * 4.0 / 3.0;
+		}
+
+		public bool CanCoax(IWorldAccessor w) {
+			CanDropItem = false;
+			if (TeleportAttempts == 0) {
+				if (w.Rand.NextDouble() > CoaxChance()) {
+					TeleportAttempts = MAX_ATTEMPTS;
+					return false;
+				}
+			}
 			if (TeleportAttempts < MAX_ATTEMPTS) {
 				TeleportAttempts += 1;
-				CanDropItem = false;
 				return true;
 			} else {
 				return false;
@@ -145,7 +177,7 @@ namespace TransRod {
 
 			var (rod, face) = adjacent_trans_rod.Value;
 			w.Api.Logger.Notification("Translocator coaxing rod found in direction {0}", face);
-			if (!rod.CanCoax()) {
+			if (!rod.CanCoax(w)) {
 				return null;
 			}
 			return BlockTransRod.GetRandPosFromCone(w, mindist, maxdist, face);
