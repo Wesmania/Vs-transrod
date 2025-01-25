@@ -14,6 +14,7 @@ using Vintagestory.GameContent;
 
 namespace TransRod {
 	public class BlockTransRod: Block {
+		const int MAX_ATTEMPTS = 100;
 		public int TeleportAttempts = 0;
 		public bool CanDropItem = true;
 
@@ -22,7 +23,31 @@ namespace TransRod {
 			if (CanDropItem) {
 				stuff.Add(new ItemStack(world.GetBlock(new AssetLocation("transrod:transrod-north")), 1));
 			}
+			GetAdjacentRod(world, pos);
 			return stuff.ToArray();
+		}
+
+		public bool MarkTeleAttempt() {
+			if (TeleportAttempts < MAX_ATTEMPTS) {
+				TeleportAttempts += 1;
+				CanDropItem = false;
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		static (Block, BlockFacing)? GetAdjacentRod(IWorldAccessor w, BlockPos tl) {
+			IBlockAccessor ba = w.BlockAccessor;
+			foreach (var face in new [] {BlockFacing.NORTH, BlockFacing.EAST, BlockFacing.SOUTH, BlockFacing.WEST}) {
+				Block adjacent = PosUtil.GetBlockOnSide(ba, tl, face);
+				// FIXME: no way to check for transrod: domain without messing around with strings.
+				// Sucks to be you if your mod has a "transrod" entity!
+				if (adjacent.CodeWithoutParts(1) == "transrod") {
+					return (adjacent, face);
+				}
+			}
+			return null;
 		}
 
 	}
