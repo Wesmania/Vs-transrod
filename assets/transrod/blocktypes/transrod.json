@@ -17,7 +17,9 @@
 		{ loadFromProperties: "game:abstract/horizontalorientation" },
 	],
 	handbook: {
-		groupBy: ["transrod-north"]	
+		groupBy: ["transrod-north"],
+		title: "block-handbooktitle-transrod-north",
+		text: "block-handbooktext-transrod-north"
 	},
 	sounds: {
 		place: "game:block/sand",

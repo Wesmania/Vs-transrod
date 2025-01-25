@@ -1,0 +1,5 @@
+{
+	"transrod:block-transrod-*": "Translocator coaxing rod",
+	"transrod:block-handbooktitle-transrod:transrod-*": "",
+	"transrod:block-handbooktext-transrod:transrod-*": "A tool for coaxing translocators to favour a certain direction when connecting.<br><br>To use, place a rod right adjacent to a translocator before it is fixed. Upon repair, the translocator will be more likely to form a connection in the direction of the rod. Once connection process starts, the rod will be used up and won't drop when destroyed.<br><br>Rods made of more exotic materials are more likely to coax the translocator. Copper rods moderately increase coax chance, silver rods increase it greatly, while meteoric iron and cupronickel rods make it almost certain."
+}
