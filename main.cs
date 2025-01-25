@@ -37,14 +37,14 @@ namespace TransRod {
 			}
 		}
 
-		public static (Block, BlockFacing)? GetAdjacentRod(IWorldAccessor w, BlockPos tl) {
+		public static (BlockTransRod, BlockFacing)? GetAdjacentRod(IWorldAccessor w, BlockPos tl) {
 			IBlockAccessor ba = w.BlockAccessor;
 			foreach (var face in new [] {BlockFacing.NORTH, BlockFacing.EAST, BlockFacing.SOUTH, BlockFacing.WEST}) {
 				Block adjacent = PosUtil.GetBlockOnSide(ba, tl, face);
 				// FIXME: no way to check for transrod: domain without messing around with strings.
 				// Sucks to be you if your mod has a "transrod" entity!
 				if (adjacent.CodeWithoutParts(1) == "transrod") {
-					return (adjacent, face);
+					return ((BlockTransRod) adjacent, face);
 				}
 			}
 			return null;
