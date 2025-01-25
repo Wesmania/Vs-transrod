@@ -14,6 +14,7 @@ using Vintagestory.GameContent;
 
 namespace TransRod {
 	public class BlockTransRod: Block {
+
 		const int MAX_ATTEMPTS = 100;
 		public int TeleportAttempts = 0;
 		public bool CanDropItem = true;
@@ -27,7 +28,7 @@ namespace TransRod {
 			return stuff.ToArray();
 		}
 
-		public bool MarkTeleAttempt() {
+		public bool CanCoax() {
 			if (TeleportAttempts < MAX_ATTEMPTS) {
 				TeleportAttempts += 1;
 				CanDropItem = false;
@@ -102,6 +103,20 @@ namespace TransRod {
 			}
 			return (dx, dz);
 		}
+
+		public static (int, int)? TryCoaxCoordinates(IWorldAccessor w, BlockPos tl, int mindist, int maxdist) {
+			var adjacent_trans_rod = BlockTransRod.GetAdjacentRod(w, tl);
+			if (adjacent_trans_rod == null) {
+				return null;
+			}
+
+			var (rod, face) = adjacent_trans_rod.Value;
+			w.Api.Logger.Notification("Translocator coaxing rod found in direction {0}", face);
+			if (!rod.CanCoax()) {
+				return null;
+			}
+			return BlockTransRod.GetRandPosFromCone(w, mindist, maxdist, face);
+		}
 	}
 
 	public class Priv {
@@ -129,25 +144,20 @@ namespace TransRod {
 			if (self.findNextChunk)
 			{
 				self.findNextChunk = false;
+				int dx, dz;
 
-				int addrange = self.MaxTeleporterRangeInBlocks - self.MinTeleporterRangeInBlocks;
-
-				int dx = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
-				int dz = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
-
-				var adjacent_trans_rod = BlockTransRod.GetAdjacentRod(sapi.World, self.Pos);
-				if (adjacent_trans_rod != null) {
-					var (rod, face) = adjacent_trans_rod.Value;
-					sapi.Logger.Notification("Translocator coaxing rod found in direction {0}", face);
-				}
-
-				var other_coords = BlockTransRod.GetRandPosFromCone(sapi.World,
+				var coaxedCoords = BlockTransRod.TryCoaxCoordinates(sapi.World, self.Pos,
 										    self.MinTeleporterRangeInBlocks,
-										    self.MaxTeleporterRangeInBlocks,
-										    BlockFacing.NORTH);
-				if (other_coords != null) {
-					var (odx, odz) = other_coords.Value;
-					sapi.Logger.Notification("Proposed coords: ({0}, {1})", odx, odz);
+										    self.MaxTeleporterRangeInBlocks);
+				if (coaxedCoords != null) {
+					(dx, dz) = coaxedCoords.Value;
+					sapi.Logger.Notification("Trying coaxed coordinates ({0}, {1})", dx, dz);
+				} else {
+					// Do the original logic.
+					int addrange = self.MaxTeleporterRangeInBlocks - self.MinTeleporterRangeInBlocks;
+					dx = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
+					dz = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
+					sapi.Logger.Notification("Trying original coordinates ({0}, {1})", dx, dz);
 				}
 
 				int chunkX = (self.Pos.X + dx) / GlobalConstants.ChunkSize;
