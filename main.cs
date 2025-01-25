@@ -15,8 +15,30 @@ using Vintagestory.GameContent;
 namespace TransRod {
 	public class TransRod: BlockEntity {
 
+		public const int MAX_ATTEMPTS = 100;
+		public int TeleportAttempts = 0;
+		public bool CanDropItem = true;
+
 		BlockEntityAnimationUtil animUtil {
 			get { return GetBehavior<BEBehaviorAnimatable>().animUtil; }
+		}
+
+		public bool CanCoax(IWorldAccessor w) {
+			CanDropItem = false;
+			if (TeleportAttempts == 0) {
+				double cc = (Block as BlockTransRod).CoaxChance();
+				double rand = w.Rand.NextDouble();
+				if (rand > cc) {
+					TeleportAttempts = MAX_ATTEMPTS;
+					return false;
+				}
+			}
+			if (TeleportAttempts < MAX_ATTEMPTS) {
+				TeleportAttempts += 1;
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		public override void Initialize(ICoreAPI api) {
@@ -43,25 +65,21 @@ namespace TransRod {
 
 	public class BlockTransRod: Block {
 
-		const int MAX_ATTEMPTS = 100;
-		public int TeleportAttempts = 0;
-		public bool CanDropItem = true;
-
 		public Shape GetShape() {
 			return Vintagestory.API.Common.Shape.TryGet(api, Shape.Base);
 		}
 
 		public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1) {
 			List<ItemStack> stuff = new List<ItemStack>();
-			if (CanDropItem) {
+			var e = GetBlockEntity<TransRod>(pos);
+			if (e.CanDropItem) {
 				var myname = "transrod:" + CodeWithoutParts(1) + "-north";
 				stuff.Add(new ItemStack(world.GetBlock(new AssetLocation(myname)), 1));
 			}
-			GetAdjacentRod(world, pos);
 			return stuff.ToArray();
 		}
 
-		double CoaxChance() {
+		public double CoaxChance() {
 			var material = LastCodePart(1);
 			double base_chance;
 			switch(material) {
@@ -87,30 +105,16 @@ namespace TransRod {
 			return (base_chance - 0.25) * 4.0 / 3.0;
 		}
 
-		public bool CanCoax(IWorldAccessor w) {
-			CanDropItem = false;
-			if (TeleportAttempts == 0) {
-				if (w.Rand.NextDouble() > CoaxChance()) {
-					TeleportAttempts = MAX_ATTEMPTS;
-					return false;
-				}
-			}
-			if (TeleportAttempts < MAX_ATTEMPTS) {
-				TeleportAttempts += 1;
-				return true;
-			} else {
-				return false;
-			}
-		}
-
-		public static (BlockTransRod, BlockFacing)? GetAdjacentRod(IWorldAccessor w, BlockPos tl) {
+		public static (TransRod, BlockFacing)? GetAdjacentRod(IWorldAccessor w, BlockPos tl) {
 			IBlockAccessor ba = w.BlockAccessor;
 			foreach (var face in new [] {BlockFacing.NORTH, BlockFacing.EAST, BlockFacing.SOUTH, BlockFacing.WEST}) {
 				Block adjacent = PosUtil.GetBlockOnSide(ba, tl, face);
 				// FIXME: no way to check for transrod: domain without messing around with strings.
 				// Sucks to be you if your mod has a "transrod" entity!
 				if (adjacent.CodeWithoutParts(2) == "transrod") {
-					return ((BlockTransRod) adjacent, face);
+					var rod_pos = tl.AddCopy(face, 1);
+					var rod = ((BlockTransRod) adjacent).GetBlockEntity<TransRod>(rod_pos);
+					return (rod, face);
 				}
 			}
 			return null;
@@ -176,7 +180,6 @@ namespace TransRod {
 			}
 
 			var (rod, face) = adjacent_trans_rod.Value;
-			w.Api.Logger.Notification("Translocator coaxing rod found in direction {0}", face);
 			if (!rod.CanCoax(w)) {
 				return null;
 			}
@@ -296,7 +299,6 @@ namespace TransRod {
 
 		public override void Start(ICoreAPI api)
 		{
-			api.Logger.Notification("Hello mod");
 			api.RegisterBlockClass("transrod:BlockTransRod", typeof(BlockTransRod));
 			api.RegisterBlockEntityClass("transrod:TransRod", typeof(TransRod));
 			modhook.PatchAll();
@@ -304,12 +306,10 @@ namespace TransRod {
 
 		public override void StartServerSide(ICoreServerAPI api)
 		{
-			api.Logger.Notification("Hello server");
 		}
 
 		public override void StartClientSide(ICoreClientAPI api)
 		{
-			api.Logger.Notification("Hello client");
 		}
 	}
 }
