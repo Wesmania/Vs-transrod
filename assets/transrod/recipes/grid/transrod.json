@@ -10,7 +10,69 @@
 		height: 3,
 		output: {
 			type: "block",
-			code: "transrod-north",
-		}
+			code: "transrod-north"
+		},
+		attributes: {
+			base: "iron",
+			holder: "copper"
+		},
+		recipeGroup: 1
+	},
+	{
+		ingredientPattern: "_G_,_H_,_R_",
+		ingredients: {
+			"G": { type: "item", code: "game:gear-temporal" },
+			"H": { type: "item", code: "game:wrench-silver" },
+			"R": { type: "item", code: "game:rod-iron" }
+		},
+		width: 3,
+		height: 3,
+		output: {
+			type: "block",
+			code: "transrod-north"
+		},
+		attributes: {
+			base: "iron",
+			holder: "silver"
+		},
+		recipeGroup: 2
+	},
+	{
+		ingredientPattern: "_G_,_H_,_R_",
+		ingredients: {
+			"G": { type: "item", code: "game:gear-temporal" },
+			"H": { type: "item", code: "game:wrench-meteoriciron" },
+			"R": { type: "item", code: "game:rod-iron" }
+		},
+		width: 3,
+		height: 3,
+		output: {
+			type: "block",
+			code: "transrod-north"
+		},
+		attributes: {
+			base: "iron",
+			holder: "meteoriciron"
+		},
+		recipeGroup: 3
+	},
+	{
+		ingredientPattern: "_G_,_H_,_R_",
+		ingredients: {
+			"G": { type: "item", code: "game:gear-temporal" },
+			"H": { type: "item", code: "game:wrench-copper" },
+			"R": { type: "item", code: "game:rod-cupronickel" }
+		},
+		width: 3,
+		height: 3,
+		output: {
+			type: "block",
+			code: "transrod-north"
+		},
+		attributes: {
+			base: "cupronickel",
+			holder: "copper"
+		},
+		recipeGroup: 4
 	}
 ]

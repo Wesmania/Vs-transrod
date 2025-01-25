@@ -14,6 +14,8 @@ using Vintagestory.GameContent;
 
 namespace TransRod {
 	public class TransRod: BlockEntity {
+		string rod_base;
+		string rod_holder;
 
 		BlockEntityAnimationUtil animUtil {
 			get { return GetBehavior<BEBehaviorAnimatable>().animUtil; }
@@ -24,6 +26,18 @@ namespace TransRod {
 			if (api.Side == EnumAppSide.Client) {
 				animUtil?.InitializeAnimator("transrod", null, null, new Vec3f(0, getRotation(), 0));
 				animUtil?.StartAnimation(new AnimationMetaData() { Animation = "gearrotation", Code = "gearrotation" });
+			}
+		}
+
+		public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
+		{
+			base.FromTreeAttributes(tree, worldForResolving);
+
+			rod_base = tree.GetString("base", "iron");
+			rod_holder = tree.GetString("holder", "copper");
+			if (Api != null && Api.Side == EnumAppSide.Client)
+			{
+				MarkDirty(true);
 			}
 		}
 

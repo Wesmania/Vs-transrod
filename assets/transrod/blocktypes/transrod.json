@@ -21,9 +21,6 @@
 		title: "block-handbooktitle-transrod-north",
 		text: "block-handbooktext-transrod-north"
 	},
-	sounds: {
-		place: "game:block/sand",
-	},
 	sidesolid: { all: false },
 	sideopaque: { all: false },
 	emitsideao: { all: false },
@@ -52,5 +49,11 @@
 		scale: 1.0,
 		translation: {x: -0.95, y: 0.0, z: -0.5 },
 		rotation: {x: 0, y: -90, z: 0}
+	},
+	textures: {
+		"iron": { base: "game:block/metal/ingot/iron" },
+		"copper": { base: "game:block/metal/ingot/copper" },
+		"meteoriciron": { base: "game:block/metal/ingot/meteoriciron" },
+		"cupronickel": { base: "game:block/metal/ingot/cupronickel" }
 	}
 }
