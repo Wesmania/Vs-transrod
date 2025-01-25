@@ -37,7 +37,7 @@ namespace TransRod {
 			}
 		}
 
-		static (Block, BlockFacing)? GetAdjacentRod(IWorldAccessor w, BlockPos tl) {
+		public static (Block, BlockFacing)? GetAdjacentRod(IWorldAccessor w, BlockPos tl) {
 			IBlockAccessor ba = w.BlockAccessor;
 			foreach (var face in new [] {BlockFacing.NORTH, BlockFacing.EAST, BlockFacing.SOUTH, BlockFacing.WEST}) {
 				Block adjacent = PosUtil.GetBlockOnSide(ba, tl, face);
@@ -105,11 +105,13 @@ namespace TransRod {
 	}
 
 	public class Priv {
+
 		public static FieldInfo Field(BlockEntityStaticTranslocator instance, string name) {
 			return instance.GetType().GetField(name,
 							   System.Reflection.BindingFlags.NonPublic
 							   | System.Reflection.BindingFlags.Instance);
 		}
+
 		public static MethodInfo Method(BlockEntityStaticTranslocator instance, string name) {
 			return instance.GetType().GetMethod(name,
 							    System.Reflection.BindingFlags.NonPublic
@@ -132,6 +134,12 @@ namespace TransRod {
 
 				int dx = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
 				int dz = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
+
+				var adjacent_trans_rod = BlockTransRod.GetAdjacentRod(sapi.World, self.Pos);
+				if (adjacent_trans_rod != null) {
+					var (rod, face) = adjacent_trans_rod.Value;
+					sapi.Logger.Notification("Translocator coaxing rod found in direction {0}", face);
+				}
 
 				var other_coords = BlockTransRod.GetRandPosFromCone(sapi.World,
 										    self.MinTeleporterRangeInBlocks,
