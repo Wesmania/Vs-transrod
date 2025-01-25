@@ -13,11 +13,43 @@ using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace TransRod {
+	public class TransRod: BlockEntity {
+
+		BlockEntityAnimationUtil animUtil {
+			get { return GetBehavior<BEBehaviorAnimatable>().animUtil; }
+		}
+
+		public override void Initialize(ICoreAPI api) {
+			base.Initialize(api);
+			if (api.Side == EnumAppSide.Client) {
+				animUtil?.InitializeAnimator("transrod", null, null, new Vec3f(0, getRotation(), 0));
+				animUtil?.StartAnimation(new AnimationMetaData() { Animation = "gearrotation", Code = "gearrotation" });
+			}
+		}
+
+		public int getRotation()
+		{
+			int rot = 0;
+			switch (Block.LastCodePart())
+			{
+				case "north": rot = 0; break;
+				case "east": rot = 270; break;
+				case "south": rot = 180; break;
+				case "west": rot = 90; break;
+			}
+			return rot;
+		}
+	}
+
 	public class BlockTransRod: Block {
 
 		const int MAX_ATTEMPTS = 100;
 		public int TeleportAttempts = 0;
 		public bool CanDropItem = true;
+
+		public Shape GetShape() {
+			return Vintagestory.API.Common.Shape.TryGet(api, Shape.Base);
+		}
 
 		public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1) {
 			List<ItemStack> stuff = new List<ItemStack>();
@@ -233,6 +265,7 @@ namespace TransRod {
 		{
 			api.Logger.Notification("Hello mod");
 			api.RegisterBlockClass("transrod:BlockTransRod", typeof(BlockTransRod));
+			api.RegisterBlockEntityClass("transrod:TransRod", typeof(TransRod));
 			modhook.PatchAll();
 		}
 

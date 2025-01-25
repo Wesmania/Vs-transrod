@@ -1,9 +1,11 @@
 {
 	code: "transrod",
 	class: "transrod:BlockTransRod",
+	entityclass: "transrod:TransRod",
 	behaviors: [
 		{ name: "HorizontalOrientable" },
 	],
+	entityBehaviors: [{ name: "Animatable" }],
 	creativeinventory: { "general": ["*-north"], },
 	shapeByType: {
 		"*-north": { base: "block/transrod", rotateY: 0 },
