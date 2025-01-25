@@ -68,5 +68,6 @@
 			"base": { base: "game:block/metal/ingot/cupronickel" },
 			"holder": { base: "game:block/metal/ingot/copper" }
 		}
-	}
+	},
+	maxstacksize: 1,
 }
