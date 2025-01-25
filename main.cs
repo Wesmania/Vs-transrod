@@ -26,6 +26,59 @@ namespace TransRod {
 	}
 	[HarmonyPatch(typeof(BlockEntityStaticTranslocator), nameof(BlockEntityStaticTranslocator.setupGameTickers))]
 	public class BlockEntityStaticTranslocatorHook {
+
+		static void ServerTickReplacement(BlockEntityStaticTranslocator self, float dt)
+		{
+			var f_sapi = Priv.Field(self, "sapi");
+			var sapi = (ICoreServerAPI) f_sapi.GetValue(self);
+			if (self.findNextChunk)
+			{
+				self.findNextChunk = false;
+
+				int addrange = self.MaxTeleporterRangeInBlocks - self.MinTeleporterRangeInBlocks;
+
+				int dx = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
+				int dz = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
+
+				int chunkX = (self.Pos.X + dx) / GlobalConstants.ChunkSize;
+				int chunkZ = (self.Pos.Z + dz) / GlobalConstants.ChunkSize;
+
+				if (!sapi.World.BlockAccessor.IsValidPos(self.Pos.X + dx, 1, self.Pos.Z + dz))
+				{
+					self.findNextChunk = true;
+					return;
+				}
+
+				ChunkPeekOptions opts = new ChunkPeekOptions()
+				{
+					OnGenerated = (chunks) => {
+						var f_TestForExitPoint = Priv.Method(self, "TestForExitPoint");
+						f_TestForExitPoint.Invoke(self, new object[] { chunks, chunkX, chunkZ });
+					},
+						    UntilPass = EnumWorldGenPass.TerrainFeatures,
+						    ChunkGenParams = (ITreeAttribute) Priv.Method(self, "chunkGenParams").Invoke(self, new object[] {})
+				};
+
+				sapi.WorldManager.PeekChunkColumn(chunkX, chunkZ, opts);
+			}
+			var f_canTeleport = Priv.Field(self, "canTeleport");
+			var f_activated = Priv.Field(self, "activated");
+
+			if ((bool) f_canTeleport.GetValue(self) && (bool) f_activated.GetValue(self))
+			{
+				try
+				{
+					var f_HandleTeleportingServer = Priv.Method(self, "HandleTeleportingServer");
+					f_HandleTeleportingServer.Invoke(self, new object[] {dt});
+				}
+				catch (Exception e)
+				{
+					self.Api.Logger.Warning("Exception when ticking Static Translocator at {0}", self.Pos);
+					self.Api.Logger.Error(e);
+				}
+			}
+		}
+
 		static bool Prefix(BlockEntityStaticTranslocator __instance) {
 			if (__instance.Api.Side == EnumAppSide.Server)
 			{
@@ -33,8 +86,7 @@ namespace TransRod {
 				sapi.SetValue(__instance, __instance.Api as ICoreServerAPI);
 
 				Action<float> doServer = delegate(float dt) {
-					var prop = Priv.Method(__instance, "OnServerGameTick");
-					prop.Invoke(__instance, new object[] { dt });
+					ServerTickReplacement(__instance, dt);
 				};
 				__instance.RegisterGameTickListener(doServer, 250);
 			}
