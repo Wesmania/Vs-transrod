@@ -12,20 +12,28 @@ using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
 namespace TransRod {
+	public class Priv {
+		public static FieldInfo Field(BlockEntityStaticTranslocator instance, string name) {
+			return instance.GetType().GetField(name,
+							   System.Reflection.BindingFlags.NonPublic
+							   | System.Reflection.BindingFlags.Instance);
+		}
+		public static MethodInfo Method(BlockEntityStaticTranslocator instance, string name) {
+			return instance.GetType().GetMethod(name,
+							    System.Reflection.BindingFlags.NonPublic
+							    | System.Reflection.BindingFlags.Instance);
+		}
+	}
 	[HarmonyPatch(typeof(BlockEntityStaticTranslocator), nameof(BlockEntityStaticTranslocator.setupGameTickers))]
 	public class BlockEntityStaticTranslocatorHook {
 		static bool Prefix(BlockEntityStaticTranslocator __instance) {
 			if (__instance.Api.Side == EnumAppSide.Server)
 			{
-				var prop = __instance.GetType().GetField("sapi",
-									 System.Reflection.BindingFlags.NonPublic
-									 | System.Reflection.BindingFlags.Instance);
-				prop.SetValue(__instance, __instance.Api as ICoreServerAPI);
+				var sapi = Priv.Field(__instance, "sapi");
+				sapi.SetValue(__instance, __instance.Api as ICoreServerAPI);
 
 				Action<float> doServer = delegate(float dt) {
-					var prop = __instance.GetType().GetMethod("OnServerGameTick",
-										 System.Reflection.BindingFlags.NonPublic
-										 | System.Reflection.BindingFlags.Instance);
+					var prop = Priv.Method(__instance, "OnServerGameTick");
 					prop.Invoke(__instance, new object[] { dt });
 				};
 				__instance.RegisterGameTickListener(doServer, 250);
@@ -33,9 +41,7 @@ namespace TransRod {
 			else
 			{
 				Action<float> doClient = delegate(float dt) {
-					var prop = __instance.GetType().GetMethod("OnClientGameTick",
-										 System.Reflection.BindingFlags.NonPublic
-										 | System.Reflection.BindingFlags.Instance);
+					var prop = Priv.Method(__instance, "OnClientGameTick");
 					prop.Invoke(__instance, new object[] { dt });
 				};
 				__instance.RegisterGameTickListener(doClient, 50);
