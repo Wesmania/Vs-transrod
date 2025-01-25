@@ -119,7 +119,7 @@
 		{
 			"name": "Gear rotation",
 			"code": "gearrotation",
-			"quantityframes": 60,
+			"quantityframes": 240000,
 			"onActivityStopped": "Rewind",
 			"onAnimationEnd": "Repeat",
 			"keyframes": [
@@ -130,9 +130,9 @@
 					}
 				},
 				{
-					"frame": 59,
+					"frame": 239999,
 					"elements": {
-						"Gear": { "rotationX": 0.0, "rotationY": -87.5, "rotationZ": 0 }
+						"Gear": { "rotationX": 0.0, "rotationY": -358500, "rotationZ": 0 }
 					}
 				}
 			]
