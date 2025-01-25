@@ -1,0 +1,16 @@
+[
+	{
+		ingredientPattern: "_G_,_H_,_R_",
+		ingredients: {
+			"G": { type: "item", code: "game:gear-temporal" },
+			"H": { type: "item", code: "game:wrench-copper" },
+			"R": { type: "item", code: "game:rod-iron" }
+		},
+		width: 3,
+		height: 3,
+		output: {
+			type: "block",
+			code: "transrod-north",
+		}
+	}
+]
