@@ -10,11 +10,7 @@
 		height: 3,
 		output: {
 			type: "block",
-			code: "transrod-north"
-		},
-		attributes: {
-			base: "iron",
-			holder: "copper"
+			code: "transrod-copper-north"
 		},
 		recipeGroup: 1
 	},
@@ -29,11 +25,7 @@
 		height: 3,
 		output: {
 			type: "block",
-			code: "transrod-north"
-		},
-		attributes: {
-			base: "iron",
-			holder: "silver"
+			code: "transrod-silver-north"
 		},
 		recipeGroup: 2
 	},
@@ -48,11 +40,7 @@
 		height: 3,
 		output: {
 			type: "block",
-			code: "transrod-north"
-		},
-		attributes: {
-			base: "iron",
-			holder: "meteoriciron"
+			code: "transrod-meteoriciron-north"
 		},
 		recipeGroup: 3
 	},
@@ -67,11 +55,7 @@
 		height: 3,
 		output: {
 			type: "block",
-			code: "transrod-north"
-		},
-		attributes: {
-			base: "cupronickel",
-			holder: "copper"
+			code: "transrod-cupronickel-north"
 		},
 		recipeGroup: 4
 	}

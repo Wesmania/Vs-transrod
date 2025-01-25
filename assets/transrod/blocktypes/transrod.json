@@ -14,10 +14,11 @@
 		"*-east":  { base: "block/transrod", rotateY: 270 },
 	},
 	variantgroups: [
+		{ code: "material", states: ["copper", "silver", "meteoriciron", "cupronickel"] },
 		{ loadFromProperties: "game:abstract/horizontalorientation" },
 	],
 	handbook: {
-		groupBy: ["transrod-north"],
+		groupBy: ["transrod-copper-north"],
 		title: "block-handbooktitle-transrod-north",
 		text: "block-handbooktext-transrod-north"
 	},
@@ -50,10 +51,22 @@
 		translation: {x: -0.95, y: 0.0, z: -0.5 },
 		rotation: {x: 0, y: -90, z: 0}
 	},
-	textures: {
-		"iron": { base: "game:block/metal/ingot/iron" },
-		"copper": { base: "game:block/metal/ingot/copper" },
-		"meteoriciron": { base: "game:block/metal/ingot/meteoriciron" },
-		"cupronickel": { base: "game:block/metal/ingot/cupronickel" }
+	texturesByType: {
+		"*-copper-*": {
+			"base": { base: "game:block/metal/ingot/iron" },
+			"holder": { base: "game:block/metal/ingot/copper" }
+		},
+		"*-silver-*": {
+			"base": { base: "game:block/metal/ingot/iron" },
+			"holder": { base: "game:block/metal/ingot/silver" }
+		},
+		"*-meteoriciron-*": {
+			"base": { base: "game:block/metal/ingot/iron" },
+			"holder": { base: "game:block/metal/ingot/meteoriciron" }
+		},
+		"*-cupronickel-*": {
+			"base": { base: "game:block/metal/ingot/cupronickel" },
+			"holder": { base: "game:block/metal/ingot/copper" }
+		}
 	}
 }

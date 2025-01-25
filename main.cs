@@ -14,8 +14,6 @@ using Vintagestory.GameContent;
 
 namespace TransRod {
 	public class TransRod: BlockEntity {
-		string rod_base;
-		string rod_holder;
 
 		BlockEntityAnimationUtil animUtil {
 			get { return GetBehavior<BEBehaviorAnimatable>().animUtil; }
@@ -26,18 +24,6 @@ namespace TransRod {
 			if (api.Side == EnumAppSide.Client) {
 				animUtil?.InitializeAnimator("transrod", null, null, new Vec3f(0, getRotation(), 0));
 				animUtil?.StartAnimation(new AnimationMetaData() { Animation = "gearrotation", Code = "gearrotation" });
-			}
-		}
-
-		public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
-		{
-			base.FromTreeAttributes(tree, worldForResolving);
-
-			rod_base = tree.GetString("base", "iron");
-			rod_holder = tree.GetString("holder", "copper");
-			if (Api != null && Api.Side == EnumAppSide.Client)
-			{
-				MarkDirty(true);
 			}
 		}
 
@@ -68,7 +54,8 @@ namespace TransRod {
 		public override ItemStack[] GetDrops(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1) {
 			List<ItemStack> stuff = new List<ItemStack>();
 			if (CanDropItem) {
-				stuff.Add(new ItemStack(world.GetBlock(new AssetLocation("transrod:transrod-north")), 1));
+				var myname = "transrod:" + CodeWithoutParts(1) + "-north";
+				stuff.Add(new ItemStack(world.GetBlock(new AssetLocation(myname)), 1));
 			}
 			GetAdjacentRod(world, pos);
 			return stuff.ToArray();
@@ -90,7 +77,7 @@ namespace TransRod {
 				Block adjacent = PosUtil.GetBlockOnSide(ba, tl, face);
 				// FIXME: no way to check for transrod: domain without messing around with strings.
 				// Sucks to be you if your mod has a "transrod" entity!
-				if (adjacent.CodeWithoutParts(1) == "transrod") {
+				if (adjacent.CodeWithoutParts(2) == "transrod") {
 					return ((BlockTransRod) adjacent, face);
 				}
 			}
