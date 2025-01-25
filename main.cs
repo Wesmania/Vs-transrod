@@ -50,6 +50,58 @@ namespace TransRod {
 			return null;
 		}
 
+		public static (int, int)? GetRandPosFromCone(IWorldAccessor w, int mindist, int maxdist, BlockFacing face) {
+			// Picks a randomlocation in a trapezoid made from a 90
+			// degree cone in a cardinal direction truncated by
+			// minimum and maximum distance.
+			//
+			// Something like this:
+			//
+			//   -------------------
+			//    \               /
+			//     \             /
+			//      \           /
+			//       -----------
+			//
+			//
+			//
+			//
+			//            *
+
+			// Cardinal directions to coordinates:
+			// North is towards negative Z
+			// South is towards positive Z
+			// West is towards negative X
+			// East is towards positive X
+
+			// First, randomize any point between mindist and maxdist away.
+			int addrange = maxdist - mindist;
+			int dx = (int)(mindist + w.Rand.NextDouble() * addrange) * (2 * w.Rand.Next(2) - 1);
+			int dz = (int)(mindist + w.Rand.NextDouble() * addrange) * (2 * w.Rand.Next(2) - 1);
+
+			// Now, if the point did not land in the northern cone, rotate it by 90 degrees until it does.
+			while (dz > 0 || Math.Abs(dx) > Math.Abs(dz)) {
+				(dx, dz) = (dz, -dx);
+			}
+
+			// Finally, rotate the point to the desired cone.
+			if (face == BlockFacing.NORTH) {
+				// Already pointing north
+			} else if (face == BlockFacing.SOUTH) {
+				// Just reverse both coordinates.
+				(dx, dz) = (-dx, -dz);
+			} else if (face == BlockFacing.WEST) {
+				// Transpose coordinates. Now dx <= 0 and abs(dz) <= abs(dx), so it's western cone.
+				(dx, dz) = (dz, dx);
+			} else if (face == BlockFacing.EAST) {
+				// Same, but also reverse coordinates.
+				(dx, dz) = (-dz, -dx);
+			} else {
+				w.Api.Logger.Warning("Unexpected block face {0}", face);
+				return null;
+			}
+			return (dx, dz);
+		}
 	}
 
 	public class Priv {
@@ -80,6 +132,15 @@ namespace TransRod {
 
 				int dx = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
 				int dz = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
+
+				var other_coords = BlockTransRod.GetRandPosFromCone(sapi.World,
+										    self.MinTeleporterRangeInBlocks,
+										    self.MaxTeleporterRangeInBlocks,
+										    BlockFacing.NORTH);
+				if (other_coords != null) {
+					var (odx, odz) = other_coords.Value;
+					sapi.Logger.Notification("Proposed coords: ({0}, {1})", odx, odz);
+				}
 
 				int chunkX = (self.Pos.X + dx) / GlobalConstants.ChunkSize;
 				int chunkZ = (self.Pos.Z + dz) / GlobalConstants.ChunkSize;
