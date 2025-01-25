@@ -12,6 +12,7 @@
 			type: "block",
 			code: "transrod-copper-north"
 		},
+		requiresTrait: "tinkerer",
 		recipeGroup: 1
 	},
 	{
@@ -27,6 +28,7 @@
 			type: "block",
 			code: "transrod-silver-north"
 		},
+		requiresTrait: "tinkerer",
 		recipeGroup: 2
 	},
 	{
@@ -42,6 +44,7 @@
 			type: "block",
 			code: "transrod-meteoriciron-north"
 		},
+		requiresTrait: "tinkerer",
 		recipeGroup: 3
 	},
 	{
@@ -57,6 +60,7 @@
 			type: "block",
 			code: "transrod-cupronickel-north"
 		},
+		requiresTrait: "tinkerer",
 		recipeGroup: 4
 	}
 ]
