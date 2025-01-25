@@ -22,14 +22,13 @@
 	},
 	sidesolid: { all: false },
 	sideopaque: { all: false },
-	sideao: { all: true },
 	emitsideao: { all: false },
 	faceCullMode: "NeverCull",
 	selectionboxByType: {
-		"*-north": {x1: 0.4, y1: 0, z1: 0.4, x2: 0.6, y2: 0.2, z2: 1.0 },
-		"*-west":  {x1: 0.4, y1: 0, z1: 0.4, x2: 0.6, y2: 0.2, z2: 1.0, rotateY: 90 },
-		"*-south": {x1: 0.4, y1: 0, z1: 0.4, x2: 0.6, y2: 0.2, z2: 1.0, rotateY: 180 },
-		"*-east":  {x1: 0.4, y1: 0, z1: 0.4, x2: 0.6, y2: 0.2, z2: 1.0, rotateY: 270 },
+		"*-north": {x1: 0.38, y1: 0, z1: 0.15, x2: 0.62, y2: 0.2, z2: 0.9 },
+		"*-west":  {x1: 0.38, y1: 0, z1: 0.15, x2: 0.62, y2: 0.2, z2: 0.9, rotateY: 90 },
+		"*-south": {x1: 0.38, y1: 0, z1: 0.15, x2: 0.62, y2: 0.2, z2: 0.9, rotateY: 180 },
+		"*-east":  {x1: 0.38, y1: 0, z1: 0.15, x2: 0.62, y2: 0.2, z2: 0.9, rotateY: 270 },
 	},
 	collisionboxByType: {
 		"*": null,
@@ -38,4 +37,16 @@
 	blockmaterial: "Other",
 	resistance: 0.25,
 	materialDensity: 3000,
+	groundTransfor: {
+		scale: 2.0,
+	},
+	guiTransform: {
+		scale: 2.0,
+		rotation: { x: 90, y: 0, z: 0 },
+	},
+	TpHandTransform: {
+		scale: 1.0,
+		translation: {x: -0.95, y: 0.0, z: -0.5 },
+		rotation: {x: 0, y: -90, z: 0}
+	}
 }

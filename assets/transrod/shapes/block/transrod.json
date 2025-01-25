@@ -16,102 +16,102 @@
 	"elements": [
 		{
 			"name": "Base rod",
-			"from": [ 7.0, 0.0, 9.0 ],
-			"to": [ 9.0, 2.0, 15.0 ],
-			"rotationOrigin": [ 7.0, 0.0, 9.0 ],
+			"from": [ 7.0, 0.0, 6.0 ],
+			"to": [ 9.0, 2.0, 14.0 ],
+			"rotationOrigin": [ 8.0, 4.0, 8.0 ],
 			"faces": {
-				"north": { "texture": "#iron", "uv": [ 0.0, 0.0, 0.0, 0.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] },
-				"east": { "texture": "#iron", "uv": [ 0.0, 0.0, 6.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"south": { "texture": "#iron", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"west": { "texture": "#iron", "uv": [ 0.0, 0.0, 6.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"up": { "texture": "#iron", "uv": [ 0.0, 0.0, 2.0, 6.0 ], "windMode": [-1,-1,-1,-1] },
-				"down": { "texture": "#iron", "uv": [ 0.0, 0.0, 2.0, 6.0 ], "windMode": [-1,-1,-1,-1] }
+				"north": { "texture": "#iron", "uv": [ 0.0, 0.0, 0.0, 0.0 ] },
+				"east": { "texture": "#iron", "uv": [ 0.0, 0.0, 6.0, 2.0 ] },
+				"south": { "texture": "#iron", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"west": { "texture": "#iron", "uv": [ 0.0, 0.0, 6.0, 2.0 ] },
+				"up": { "texture": "#iron", "uv": [ 0.0, 0.0, 2.0, 6.0 ] },
+				"down": { "texture": "#iron", "uv": [ 0.0, 0.0, 2.0, 6.0 ] }
 			}
 		},
 		{
 			"name": "Copper wrench block 1",
-			"from": [ 7.0, 0.0, 8.0 ],
-			"to": [ 9.0, 2.0, 9.0 ],
-			"rotationOrigin": [ 7.0, 0.0, 8.0 ],
+			"from": [ 7.001, 0.01, 5.0 ],
+			"to": [ 8.999, 1.99, 6.0 ],
+			"rotationOrigin": [ 8.0, 8.5, 8.0 ],
 			"faces": {
 				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
-				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
-				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 1.0 ], "windMode": [-1,-1,-1,-1] }
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 1.0 ] }
 			}
 		},
 		{
 			"name": "Copper wrench block 2",
-			"from": [ 6.0, 0.0, 8.0 ],
-			"to": [ 7.0, 2.0, 10.0 ],
-			"rotationOrigin": [ 6.0, 0.0, 8.0 ],
+			"from": [ 6.3358, 0.01, 4.3965 ],
+			"to": [ 7.4571, 1.99, 5.8107 ],
+			"rotationOrigin": [ 6.8964, 1.0, 5.1036 ],
 			"rotationY": 45.0,
 			"faces": {
 				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] }
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] }
 			}
 		},
 		{
 			"name": "Copper wrench block 3",
-			"from": [ 9.0, 0.0, 8.4 ],
-			"to": [ 10.0, 2.0, 10.4 ],
-			"rotationOrigin": [ 9.0, 0.0, 9.0 ],
+			"from": [ 8.5429, 0.01, 4.3965 ],
+			"to": [ 9.6642, 1.99, 5.8107 ],
+			"rotationOrigin": [ 9.1036, 1.0, 5.1036 ],
 			"rotationY": 135.0,
 			"faces": {
 				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 7.0, 2.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] }
 			}
 		},
 		{
 			"name": "Copper wrench block 4",
-			"from": [ 9.0, 0.0, 6.0 ],
-			"to": [ 10.0, 2.0, 8.0 ],
-			"rotationOrigin": [ 10.0, 0.0, 8.0 ],
+			"from": [ 6.0, 0.01, 3.0 ],
+			"to": [ 7.0, 1.99, 5.0 ],
+			"rotationOrigin": [ 6.5, 1.0, 4.0 ],
 			"faces": {
 				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 7.0, 2.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] }
 			}
 		},
 		{
 			"name": "Copper wrench block 5",
-			"from": [ 6.0, 0.0, 6.0 ],
-			"to": [ 7.0, 2.0, 8.0 ],
-			"rotationOrigin": [ 7.0, 0.0, 8.0 ],
+			"from": [ 9.0, 0.01, 3.0 ],
+			"to": [ 10.0, 1.99, 5.0 ],
+			"rotationOrigin": [ 9.5, 1.0, 4.0 ],
 			"faces": {
 				"north": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
-				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ], "windMode": [-1,-1,-1,-1] },
-				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 7.0, 2.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+				"east": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"south": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"west": { "texture": "#copper", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+				"up": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] },
+				"down": { "texture": "#copper", "uv": [ 0.0, 0.0, 1.0, 2.0 ] }
 			}
 		},
 		{
 			"name": "Gear",
-			"from": [ 7.5, 0.5, 6.5 ],
-			"to": [ 8.5, 1.5, 7.5 ],
-			"rotationOrigin": [ 8.0, 1.0, 7.0 ],
+			"from": [ 7.5, 0.5, 3.5 ],
+			"to": [ 8.5, 1.5, 4.5 ],
+			"rotationOrigin": [ 8.0, 1.0, 4.0 ],
 			"faces": {
 				"north": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
-				"east": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
-				"south": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
-				"west": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
-				"up": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] },
-				"down": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ], "windMode": [-1,-1,-1,-1] }
+				"east": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+				"south": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+				"west": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+				"up": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
+				"down": { "texture": "#temporalgear", "uv": [ 0.0, 0.0, 1.0, 1.0 ] }
 			}
 		}
 	],
@@ -132,7 +132,7 @@
 				{
 					"frame": 59,
 					"elements": {
-						"Gear": { "rotationX": 0.0, "rotationY": -87.5, "rotationZ": 0.0 }
+						"Gear": { "rotationX": 0.0, "rotationY": -87.5, "rotationZ": 0 }
 					}
 				}
 			]
