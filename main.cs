@@ -219,13 +219,11 @@ namespace TransRod {
 										    self.MaxTeleporterRangeInBlocks);
 				if (coaxedCoords != null) {
 					(dx, dz) = coaxedCoords.Value;
-					sapi.Logger.Notification("Trying coaxed coordinates ({0}, {1})", dx, dz);
 				} else {
 					// Do the original logic.
 					int addrange = self.MaxTeleporterRangeInBlocks - self.MinTeleporterRangeInBlocks;
 					dx = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
 					dz = (int)(self.MinTeleporterRangeInBlocks + sapi.World.Rand.NextDouble() * addrange) * (2 * sapi.World.Rand.Next(2) - 1);
-					sapi.Logger.Notification("Trying original coordinates ({0}, {1})", dx, dz);
 				}
 
 				int chunkX = (self.Pos.X + dx) / GlobalConstants.ChunkSize;
@@ -250,9 +248,10 @@ namespace TransRod {
 				sapi.WorldManager.PeekChunkColumn(chunkX, chunkZ, opts);
 			}
 			var f_canTeleport = Priv.Field(self, "canTeleport");
-			var f_activated = Priv.Field(self, "activated");
 
-			if ((bool) f_canTeleport.GetValue(self) && (bool) f_activated.GetValue(self))
+			bool q = (bool) f_canTeleport.GetValue(self);
+			// Game has an always true property "Activated" here. Uh, alright.
+			if ((bool) f_canTeleport.GetValue(self))
 			{
 				try
 				{
